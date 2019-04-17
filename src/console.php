@@ -38,13 +38,23 @@ class Minimal extends CLI
         switch ($options->getCmd()) {
             case 'simple':
 
+                if (end(explode('.', $options->getOpt('path'))) !== 'csv') {
+                    $this->error('Niepoprawne rozszerzenie pliku');
+                    die();
+                }
+
                 $generator = new SimpleCsvMaker($options->getOpt('url'));
                 $generator->convertToCsv();
                 $generator->save($options->getOpt('path'));
                 $this->success('Plik został zapisany w podanym miejscu');
                 break;
             case 'extend':
-                $this->info($options->getOpt('path'));
+
+
+                if (end(explode('.', $options->getOpt('pathExtend'))) !== 'csv') {
+                    $this->error('Niepoprawne rozszerzenie pliku');
+                    die();
+                }
                 $updater = new ExtendedCsvMaker($options->getOpt('urlExtend'));
                 $updater->convertToCsv();
                 $updater->getFileAndSave($options->getOpt('pathExtend'));
@@ -55,8 +65,6 @@ class Minimal extends CLI
                 echo $options->help();
                 exit;
         }
-
-
     }
 }
 

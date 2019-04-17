@@ -25,21 +25,27 @@ class CsvMakerBase implements CsvMakerBaseInterface
         }
 
         $this->feedData = Feed::load($url)->toArray();
-
     }
 
+    /**
+     * @throws \Exception
+     * Zamienia feed'a na array
+     */
     public function convertToCsv(): void {
         foreach ($this->feedData['item'] as $article) {
             $this->csv[] = [
                 $article['title'],
-                strip_tags($article['description']),
+                str_replace('"', "'", strip_tags($article['description'])),
                 $article['link'],
                 (new \DateTime($article['pubDate']))->format('d F Y G:i:s'),
-                (empty($article['dc:creator'])? null : $article['dc:creator'])
+                (empty($article['dc:creator'])? 'NULL' : $article['dc:creator'])
             ];
         }
     }
 
+    /**
+     * Dumpuje dane
+     */
     public function printData() : void
     {
         dump($this->csv);

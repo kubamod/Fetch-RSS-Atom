@@ -21,7 +21,7 @@ class ExtendedCsvMaker extends CsvMakerBase
 
     /**
      * @param string $filePath
-     * Dopisuje rekordy
+     * Dopisuje rekordy do podanego pliku
      */
     public function getFileAndSave(string $filePath)
     {

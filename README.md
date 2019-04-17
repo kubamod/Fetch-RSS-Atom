@@ -1,75 +1,37 @@
-Package Skeleton
-================
-
-[![Build Status](http://img.shields.io/travis/SammyK/package-skeleton.svg)](https://travis-ci.org/SammyK/package-skeleton)
-[![Total Downloads](http://img.shields.io/packagist/dm/sammyk/package-skeleton.svg)](https://packagist.org/packages/sammyk/package-skeleton)
-[![Latest Stable Version](http://img.shields.io/packagist/v/sammyk/package-skeleton.svg)](https://packagist.org/packages/sammyk/package-skeleton)
-[![License](http://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/SammyK/package-skeleton/blob/master/LICENSE)
+## Zadanie rekrutacyjne
 
 
-:package_description
+ 
+ #####przykadowe komendy:
+ 
+    php src/console.php simple -u http://feeds.nationalgeographic.com/ng/News/News_Main -p C:\Users\Kuba\Desktop\fds\test.csv
+    
+    
+    php src/console.php extend -u http://feeds.nationalgeographic.com/ng/News/News_Main -p C:\Users\Kuba\Desktop\fds\test.csv
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+    
 
-
-Installation
-------------
-
-Add the package-skeleton package to your `composer.json` file.
-
-``` json
-{
-    "require": {
-        "sammyk/package-skeleton": "1.0.*"
-    }
-}
-```
-
-Or via the command line in the root of your Laravel installation.
-
-``` bash
-$ composer require "sammyk/package-skeleton:1.0*"
-```
-
-Usage
------
-
-``` php
-use SammyK\Skeleton;
-
-$skeleton = new Skeleton();
-echo $skeleton->echoPhrase('Hello, World!');
-
-```
+ #####This tool accepts a command as first parameter as outlined below:
 
 
-Testing
--------
+   extend <OPTIONS>
 
-``` bash
-$ phpunit
-```
+     Pobiera dane z rss/atom i dopisuje je do pliku
 
 
-Contributing
-------------
+     -u <1>, --urlExtend  Adres url z którego mają pobierać się dane
+     <1>
 
-Please see [CONTRIBUTING](https://github.com/SammyK/package-skeleton/blob/master/CONTRIBUTING.md) for details.
-
-
-Credits
--------
-
-- [Sammy Kaye Powers](https://github.com/SammyK)
-- [All Contributors](https://github.com/SammyK/package-skeleton/contributors)
+     -p <1>, --pathExtend Scieżka do pliku
+     <1>
 
 
-License
--------
+   simple <OPTIONS>
 
-The MIT License (MIT). Please see [License File](https://github.com/SammyK/package-skeleton/blob/master/LICENSE) for more information.
+     Pobiera dane z rss/atom i zapisuje je do pliku
+
+
+     -u <1>, --url <1>    Adres url z którego mają pobierać się dane
+
+     -p <1>, --path <1>   Scieżka do pliku
+

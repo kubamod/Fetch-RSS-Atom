@@ -18,6 +18,10 @@ class SimpleCsvMaker extends CsvMakerBase
         parent::__construct($url);
     }
 
+    /**
+     * @param string $filename
+     * Nadpisuje albo zapisuje plik do podanej scieki
+     */
     public function save(string $filename)
     {
         $fp = fopen($filename, 'w');
