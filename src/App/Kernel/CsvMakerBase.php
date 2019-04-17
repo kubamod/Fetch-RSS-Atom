@@ -19,7 +19,13 @@ class CsvMakerBase implements CsvMakerBaseInterface
     public function __construct(string $url)
     {
         $this->url = $url;
+
+        if (filter_var($this->url, FILTER_VALIDATE_URL) === FALSE) {
+            die('Niepoprawny URL');
+        }
+
         $this->feedData = Feed::load($url)->toArray();
+
     }
 
     public function convertToCsv(): void {

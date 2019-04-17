@@ -20,22 +20,43 @@ class Minimal extends CLI
         $options->setHelp('A very minimal example that does nothing but print a version');
         $options->registerOption('version', 'print version', 'v');
 
+        $options->registerCommand('extend', 'Pobiera dane z rss/atom i dopisuje je do pliku');
         $options->registerCommand('simple', 'Pobiera dane z rss/atom i zapisuje je do pliku');
 
         $options->registerOption('url', 'Adres url z którego mają pobierać się dane', 'u', true, 'simple');
-        $options->registerOption('path', 'Adres url z którego mają pobierać się dane', 'p', true, 'simple');
+        $options->registerOption('path', 'Scieżka do pliku', 'p', true, 'simple');
+
+        $options->registerOption('urlExtend', 'Adres url z którego mają pobierać się dane', 'u', true, 'extend');
+        $options->registerOption('pathExtend', 'Scieżka do pliku', 'p', true, 'extend');
+
     }
 
     // implement your code
     protected function main(Options $options)
     {
 
+        switch ($options->getCmd()) {
+            case 'simple':
 
-        if ($options->getCmd('test')) {
-            $this->info($options->getOpt('url').' '.$options->getOpt('path'));
-        } else {
-            echo $options->help();
+                $generator = new SimpleCsvMaker($options->getOpt('url'));
+                $generator->convertToCsv();
+                $generator->save($options->getOpt('path'));
+                $this->success('Plik został zapisany w podanym miejscu');
+                break;
+            case 'extend':
+                $this->info($options->getOpt('path'));
+                $updater = new ExtendedCsvMaker($options->getOpt('urlExtend'));
+                $updater->convertToCsv();
+                $updater->getFileAndSave($options->getOpt('pathExtend'));
+                $this->success('Rekordy zostały dodane');
+                break;
+            default:
+                $this->error('No known command was called, we show the default help instead:');
+                echo $options->help();
+                exit;
         }
+
+
     }
 }
 

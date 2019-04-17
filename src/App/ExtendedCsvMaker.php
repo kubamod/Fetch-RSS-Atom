@@ -19,14 +19,17 @@ class ExtendedCsvMaker extends CsvMakerBase
         parent::__construct($url);
     }
 
+    /**
+     * @param string $filePath
+     * Dopisuje rekordy
+     */
     public function getFileAndSave(string $filePath)
     {
 
         $fileExtension = pathinfo($filePath);
 
         if ($fileExtension['extension'] ==! 'csv') {
-            echo 'Zły format pliku';
-            exit();
+            die('Zły format pliku');
         }
 
         $fp = fopen($filePath, 'a');
