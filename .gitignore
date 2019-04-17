@@ -1,5 +1,7 @@
-/vendor
-composer.lock
-/.idea
+composer.phar
+/vendor/
 .DS_Store
-Thumbs.db
+/composer.lock
+/package-lock.json
+/node_modules
+/bower_modules
