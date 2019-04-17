@@ -3,27 +3,33 @@
  * Created by PhpStorm.
  * User: Nozdrzej
  * Date: 17.04.2019
- * Time: 18:43
+ * Time: 19:10
  */
 
 namespace App;
 
 use App\Kernel\CsvMakerBase;
 
-class SimpleCsvMaker extends CsvMakerBase
+class ExtendedCsvMaker extends CsvMakerBase
 {
+    public $filePath;
 
     public function __construct(string $url)
     {
         parent::__construct($url);
     }
 
-    public function save(string $filename)
+    public function getFileAndSave(string $filePath)
     {
-        $fp = fopen($filename, 'w');
 
-        $header = ['title', 'description', 'link', 'pubDate', 'creator'];
-        fputcsv($fp, $header);
+        $fileExtension = pathinfo($filePath);
+
+        if ($fileExtension['extension'] ==! 'csv') {
+            echo 'Zły format pliku';
+            exit();
+        }
+
+        $fp = fopen($filePath, 'a');
 
         foreach ($this->csv as $fields) {
             fputcsv($fp, $fields);
@@ -31,6 +37,4 @@ class SimpleCsvMaker extends CsvMakerBase
 
         fclose($fp);
     }
-
-
 }
