@@ -2,7 +2,7 @@
 
 
  
- #####przykadowe komendy:
+ ##### przykadowe komendy:
  
     php src/console.php simple -u http://feeds.nationalgeographic.com/ng/News/News_Main -p C:\Users\Kuba\Desktop\fds\test.csv
     
@@ -11,7 +11,7 @@
 
     
 
- #####This tool accepts a command as first parameter as outlined below:
+ ##### This tool accepts a command as first parameter as outlined below:
 
 
    extend <OPTIONS>
